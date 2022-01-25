@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compteur de click</title>
+</head>
+<body>
+
+<button class="countable">
+    Clicks : <span class="click-count">0</span>
+</button>
+
+<!--=================================================-->
+
+<script>
+
+const app = {
+    init: function() {
+        console.log('%c' + 'initialisation de l\'application', 'color: #0bf; font-size: 1rem; background-color:#fff');
+
+        // cibler le bouton ; nous utilisons le sélecteur css "élément ayant la classe CSS countable"
+        const button = document.querySelector('.countable');
+        // IMPORTANT toujours débugguer après avoir ciblé un élément
+        console.log(button);
+
+        // surveiller les clicks sur le bouton
+        button.addEventListener('click', app.handleClick);
+    },
+
+    // le paramètre event est automatiquement "rempli" par le navigateur web. Ce paramètre est un objet qui contient des informations utiles sur "ce qu'il vient de se passer" (l'événement)
+    handleClick: function(event) {
+        console.log(event);
+
+        // nous souhaitons empécher le traitement par défaut qui se déclence sur l'évément click du bouton
+        event.preventDefault();
+
+        // nous souhaitons incrémenter de un la valeur contenue dans le span du boutton
+
+        // ciblage de l'élément span ayant la classe click-count
+        // NOTICE cette méthode est trop "imprécise"
+        // const spanElement = document.querySelector('.click-count');
+
+        // ciblage de l'élément ayant la classe click-count A L'INTERIEUR du bouton sur lequel le click eu lieu. event.currentTarget permet de récupérer l'élément qui a déclenché un event
+        const clickedButton = event.currentTarget;
+
+        // sélection de l'élément ayant la classe click-count à l'intérieur de clickedButton
+        const spanElement = clickedButton.querySelector('.click-count');
+
+        // récupération du contenu de l'élément spanElement
+        let content = spanElement.textContent;
+
+        // WARNING content est une string
+        // conversion de la variable content en nombre
+        content = Number(content);
+
+        // incrémentation du contenu récupéré
+        content = content + 1;
+
+        // mise à jour de l'élément comptant les clicks
+        spanElement.textContent = content;
+    }
+};
+
+
+// nous "attendons" que la page soit complètement chargée. Lorsque la page est chargée, nous lancons "l'application"
+document.addEventListener('DOMContentLoaded', app.init);
+
+</script>
+
+
+</body>
+</html>

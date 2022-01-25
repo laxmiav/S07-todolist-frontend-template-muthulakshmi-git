@@ -1,0 +1,143 @@
+
+
+
+.navbar {
+    margin: 1em;
+    background-color: rgb(177, 172, 172);
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+
+}
+
+p {
+    border: solid rgb(140, 89, 177);
+    padding: 1em;
+}
+
+h1 {
+    padding: 1em;
+    font-size:2em;
+}
+a{
+    padding: 1em;
+    color:indigo;
+    text-decoration:underline;
+}
+.selectmenu{
+    padding: 1em;
+    margin-left:1em;
+    padding-left:2em;
+    padding-right:2em;
+}
+.menubutton{
+    border: solid rgb(140, 89, 177);
+    padding: 1em;
+   padding-left:2em;
+   padding-right:2em;
+}
+form{
+    margin: 1em;
+    display: flex;
+  flex-direction:row;
+    
+    border:solid grey;
+
+}
+.inputform{
+    padding: 1em;
+    margin:1em;
+    margin-right:4em;
+    padding-left:2em;
+    padding-right:275%;
+
+}
+.selectform{
+    padding: 1em;
+    margin:1em;
+  margin-left:40em;
+  padding-right:15em;
+}
+option{
+    border:solid grey;
+}
+.formbutton{
+   background-color:rgb(127, 127, 231);
+    color:cornsilk;
+   padding-left:2em;
+   padding-right:2em;
+   margin:1em;
+}
+.result{
+    margin: 1em;
+    display: flex;
+   justify-content:space-between;
+    
+    border:solid grey;
+}
+.inputresult{
+    padding: 1em;
+    margin:1em;
+    margin-right:4em;
+    padding-left:2em;
+    padding-right:200%;
+    border:none;
+
+}
+.validbutton{
+    background-color:rgb(127, 127, 231);
+    
+   padding-left:2em;
+   padding-right:2em;
+   margin:1em;
+   margin-left:0em;
+
+
+}
+.modifybutton{
+    background-color:rgb(127, 127, 231);
+    
+   padding-left:2em;
+   padding-right:2em;
+   margin:1em;
+   margin-left:0em;
+}
+.archivebutton{
+    background-color:rgb(127, 127, 231);
+    
+   padding-left:2em;
+   padding-right:2em;
+   margin:1em;
+   margin-left:0em;
+}
+
+.deletebutton{
+    background-color:rgb(127, 127, 231);
+    
+   padding-left:2em;
+   padding-right:2em;
+   margin:1em;
+   margin-left:0em;
+}
+.undobutton{
+    background-color:rgb(127, 127, 231);
+    
+   padding-left:2em;
+   padding-right:2em;
+   margin:1em;
+   margin-left:0em;
+}
+
+
+.category{
+    padding: 1em;
+    margin:1em;
+  margin-left:60em;
+  padding-right:15em;
+  
+}
+.progress{
+    margin:none;
+}
