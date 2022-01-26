@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Members list</title>
+
+    <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+
+    <form id="member-form">
+        <h2>Group Members</h2>
+
+
+        <label for="new-member-name">
+            New user's name
+        </label>
+
+        <input id="new-member-name" />
+
+        <button class="new-member__submit">Add</button>
+    </form>
+
+
+    <div>
+        <ul class="member-list">
+            <li>
+                <span>Loïc</span><button>Delete</button>
+            </li>
+            <li>
+                <span>Gregory</span><button>Delete</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- IMPORTANT déclaration d'un template HTML-->
+    <template id="member-template">
+        <li>
+            <span>NEW USER</span><button>Delete</button>
+        </li>
+    </template>
+
+    <!-- IMPORTANT ne pas oublier de charger les fichiers javascript nécessaire -->
+    <script src="memberList.js"></script>
+    <script src="memberForm.js"></script>
+
+
+</body>
+</html>
