@@ -6,6 +6,7 @@ const app = {
       taskForm.init();
       tasksList.init();
       task.init();
+      categoriesList.init();
     }
   }
   

@@ -6,6 +6,7 @@ const tasksList = {
       console.log('%c' + 'tasksList.js loaded', 'color: #0bf; font-size: 1rem; background-color:#fff');
   
       tasksList.loadTasksFromDOM();
+     
     },
   
     loadTasksFromDOM: function() {
@@ -29,7 +30,9 @@ const tasksList = {
       // ajout de la nouvelle tache AU DEBUT de la liste
       taskListContainer.prepend(newTask);
   
-    }
+    },
+   
+  
 
 
 
