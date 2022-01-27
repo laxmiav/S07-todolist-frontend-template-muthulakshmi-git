@@ -2,10 +2,13 @@ const task = {
 
     newTaskTemplateSelector: '#tasktodo',
     newTaskTitleSelector: '.task__title-label',
-  newTaskTitleInputSelector: '.task__title-field',
+    newTaskTitleInputSelector: '.task__title-field',
+    apiURL: 'https://benoclock.github.io/S07-todolist/tasks.json',
 
     init: function () {
         console.log('%c' + 'task.js loaded', 'color: #0bf; font-size: 1rem; background-color:#fff');
+
+        task.loadTasksFromAPI();
     },
 
     // cette méthode initialise les eventListeners pour une tâche
@@ -130,52 +133,89 @@ const task = {
             // nous ajoutons la classe CSS 'task--todo' sur l'élément
             taskElement.classList.add('task--complete');
         }
-    //    const  progressBar = taskElement.querySelector('progress-bar__level');
+        //    const  progressBar = taskElement.querySelector('progress-bar__level');
 
-    //    progressBar.style.width= '100%';
+        //    progressBar.style.width= '100%';
 
     },
 
     // STEP EPISODE 3 création d'une nouvelle tache
-  createNewTask: function(theNewTaskTitle, theNewTaskCategory) {
-    // ciblage du template de création de tâche
-    const template = document.querySelector(task.newTaskTemplateSelector);
-    const newTaskElement = template.content.firstElementChild.cloneNode(true);
+    createNewTask: function (theNewTaskTitle, theNewTaskCategory) {
+        // ciblage du template de création de tâche
+        const template = document.querySelector(task.newTaskTemplateSelector);
+        const newTaskElement = template.content.firstElementChild.cloneNode(true);
 
-    // remplacement dans la copie du template du nom de la tache
-    // le titre de la tache
-    newTaskElement.querySelector('.task__title-label').textContent = theNewTaskTitle;
+        // remplacement dans la copie du template du nom de la tache
+        // le titre de la tache
+        newTaskElement.querySelector('.task__title-label').textContent = theNewTaskTitle;
 
-    // le titre de la tâche dans l'input
-    newTaskElement.querySelector('.task__title-field').setAttribute(
-      'value',
-      theNewTaskTitle
-    );
+        // le titre de la tâche dans l'input
+        newTaskElement.querySelector('.task__title-field').setAttribute(
+            'value',
+            theNewTaskTitle
+        );
 
-   // remplacement de la catégorie de la tache dans le "data-category"
-   newTaskElement.dataset.category = theNewTaskCategory;
+        // remplacement de la catégorie de la tache dans le "data-category"
+        newTaskElement.dataset.category = theNewTaskCategory;
 
-   // Aux temps jadis nous faisions ainsi
-   // newTaskElement.setAttribute('data-category', theNewTaskCategory);
- 
-
-   // remplacement du nom de la catégorie affichée
-   // ciblage de l'élément
-   const categoryNameElement = newTaskElement.querySelector('.task__category p');
-   categoryNameElement.textContent = theNewTaskCategory;
+        // Aux temps jadis nous faisions ainsi
+        // newTaskElement.setAttribute('data-category', theNewTaskCategory);
 
 
+        // remplacement du nom de la catégorie affichée
+        // ciblage de l'élément
+        const categoryNameElement = newTaskElement.querySelector('.task__category p');
+        categoryNameElement.textContent = theNewTaskCategory;
 
 
 
-    task.initializeEventListeners(newTaskElement);
-
-    // nous retournons la nouvelle tache créée
-    return newTaskElement;
-  }
 
 
-  
+        task.initializeEventListeners(newTaskElement);
+
+        // nous retournons la nouvelle tache créée
+        return newTaskElement;
+    },
+
+
+
+    loadTasksFromAPI: function () {
+
+        console.log('tasks from api function is working');
+        // requête HTTP vers l'api benoclock
+        // IMPORTANT fetch : ennvoyer une requête en javascript vers une url
+        fetch(task.apiURL)
+            // IMPORTANT .then(uneFonctionAExecuter)
+            // ensuite une fois que nous avons récupérer le texte en format json
+            .then(task.transformJSONToJavascript)
+            .then(task.displayTasks);
+    },
+
+    transformJSONToJavascript: function (eventApiResponse) {
+        return eventApiResponse.json();
+    },
+
+    displayTasks: function (tasksFromTheApi) {
+
+        for (let taskstoshow of tasksFromTheApi) {
+            console.log(taskstoshow);
+            const newTaskElement = task.createNewTask(taskstoshow.title, taskstoshow.category.name);
+            tasksList.addTask(newTaskElement);
+
+        }
+
+
+
+    },
+
+
+
+
+
+
+
+
+
 
 
 
