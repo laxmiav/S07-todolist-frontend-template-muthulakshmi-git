@@ -19,6 +19,16 @@ const tasksList = {
         task.initializeEventListeners(taskElement);
         tasksList.tasks.push(task);
       }
+    },
+    addTask: function(newTask) {
+      // ajout de la nouvelle tache à la liste
+      tasksList.tasks.push(newTask);
+  
+      // selection de l'élément stockant la liste des taches
+      const taskListContainer = document.querySelector('.tasks');
+      // ajout de la nouvelle tache AU DEBUT de la liste
+      taskListContainer.prepend(newTask);
+  
     }
 
 

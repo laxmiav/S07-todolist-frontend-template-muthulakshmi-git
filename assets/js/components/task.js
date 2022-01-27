@@ -1,4 +1,9 @@
 const task = {
+
+    newTaskTemplateSelector: '#tasktodo',
+    newTaskTitleSelector: '.task__title-label',
+  newTaskTitleInputSelector: '.task__title-field',
+
     init: function () {
         console.log('%c' + 'task.js loaded', 'color: #0bf; font-size: 1rem; background-color:#fff');
     },
@@ -128,7 +133,48 @@ const task = {
 
 
 
-    }
+    },
+
+    // STEP EPISODE 3 création d'une nouvelle tache
+  createNewTask: function(theNewTaskTitle, theNewTaskCategory) {
+    // ciblage du template de création de tâche
+    const template = document.querySelector(task.newTaskTemplateSelector);
+    const newTaskElement = template.content.firstElementChild.cloneNode(true);
+
+    // remplacement dans la copie du template du nom de la tache
+    // le titre de la tache
+    newTaskElement.querySelector('.task__title-label').textContent = theNewTaskTitle;
+
+    // le titre de la tâche dans l'input
+    newTaskElement.querySelector('.task__title-field').setAttribute(
+      'value',
+      theNewTaskTitle
+    );
+
+   // remplacement de la catégorie de la tache dans le "data-category"
+   newTaskElement.dataset.category = theNewTaskCategory;
+
+   // Aux temps jadis nous faisions ainsi
+   // newTaskElement.setAttribute('data-category', theNewTaskCategory);
+ 
+
+   // remplacement du nom de la catégorie affichée
+   // ciblage de l'élément
+   const categoryNameElement = newTaskElement.querySelector('.task__category p');
+   categoryNameElement.textContent = theNewTaskCategory;
+
+
+
+
+
+    task.initializeEventListeners(newTaskElement);
+
+    // nous retournons la nouvelle tache créée
+    return newTaskElement;
+  }
+
+
+
 
 
 
