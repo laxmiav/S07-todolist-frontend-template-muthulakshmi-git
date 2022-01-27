@@ -133,14 +133,13 @@ const task = {
             // nous ajoutons la classe CSS 'task--todo' sur l'élément
             taskElement.classList.add('task--complete');
         }
-        //    const  progressBar = taskElement.querySelector('progress-bar__level');
-
-        //    progressBar.style.width= '100%';
+         const  progressBar = taskElement.querySelector('.progress-bar__level');
+         progressBar.style.width= '100%';
 
     },
 
     // STEP EPISODE 3 création d'une nouvelle tache
-    createNewTask: function (theNewTaskTitle, theNewTaskCategory) {
+    createNewTask: function (theNewTaskTitle, theNewTaskCategory, theNewTaskCompletion) {
         // ciblage du template de création de tâche
         const template = document.querySelector(task.newTaskTemplateSelector);
         const newTaskElement = template.content.firstElementChild.cloneNode(true);
@@ -167,7 +166,8 @@ const task = {
         const categoryNameElement = newTaskElement.querySelector('.task__category p');
         categoryNameElement.textContent = theNewTaskCategory;
 
-
+        const  progressBar = newTaskElement.querySelector('.progress-bar__level');
+        progressBar.style.width =  theNewTaskCompletion +'%';
 
 
 
@@ -199,7 +199,7 @@ const task = {
 
         for (let taskstoshow of tasksFromTheApi) {
             console.log(taskstoshow);
-            const newTaskElement = task.createNewTask(taskstoshow.title, taskstoshow.category.name);
+            const newTaskElement = task.createNewTask(taskstoshow.title, taskstoshow.category.name, taskstoshow.completion);
             tasksList.addTask(newTaskElement);
 
         }
