@@ -20,7 +20,7 @@
             New user's name
         </label>
 
-        <input id="new-member-name" />
+        <input id="new-member-name" autocomplete="off"/>
 
         <button class="new-member__submit">Add</button>
     </form>
@@ -29,9 +29,11 @@
     <div>
         <ul class="member-list">
             <li>
+                <img class="avatar" src="http://ekladata.com/gaOSN6SIHvHzsJJ5geLR1LYv8kY.png"/>
                 <span>Loïc</span><button>Delete</button>
             </li>
             <li>
+                <img  class="avatar" src="https://anniversaire-celebrite.com/upload/250x333/inspecteur-gadget-250.jpg"/>
                 <span>Gregory</span><button>Delete</button>
             </li>
         </ul>
@@ -40,6 +42,7 @@
     <!-- IMPORTANT déclaration d'un template HTML-->
     <template id="member-template">
         <li>
+            <img  class="avatar" src="https://anniversaire-celebrite.com/upload/250x333/inspecteur-gadget-250.jpg"/>
             <span>NEW USER</span><button>Delete</button>
         </li>
     </template>

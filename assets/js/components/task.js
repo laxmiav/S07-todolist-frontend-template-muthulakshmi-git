@@ -130,8 +130,9 @@ const task = {
             // nous ajoutons la classe CSS 'task--todo' sur l'élément
             taskElement.classList.add('task--complete');
         }
+    //    const  progressBar = taskElement.querySelector('progress-bar__level');
 
-
+    //    progressBar.style.width= '100%';
 
     },
 
