@@ -63,6 +63,7 @@
 .progress-bar__level {
   height: 0.4rem;
   background-color: #3298dc;
+  transition: all 1000s;
 }
 
 .task__button--desarchive,
@@ -222,4 +223,23 @@
   .task__title-field {
     width: 60%;
   }
+}
+
+
+/* option[value="3"] {
+  /*background-color: #404;*/
+ */
+
+
+
+.task button {
+  transition: all 0.1s;
+}
+
+.task button:hover {
+  box-shadow: 3px 3px 3px #0008;
+}
+
+body{
+  background-color:crimson;
 }

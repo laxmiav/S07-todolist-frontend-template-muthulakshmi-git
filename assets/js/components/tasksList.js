@@ -1,5 +1,5 @@
 const tasksList = {
-  apiRootURL: 'https://benoclock.github.io/S07-todolist',
+  apiRootURL: 'http://localhost:8080',
 
   tasks: [],
 
@@ -36,7 +36,7 @@ const tasksList = {
   // STEP épisode 4 ; chargement des tâches depuis l'api
 
   loadTasksFromAPI: function() {
-    const tasksApiURL = tasksList.apiRootURL + '/tasks.json'
+    const tasksApiURL = tasksList.apiRootURL + '/tasks'
     fetch(tasksApiURL)
       .then(tasksList.transformJSONToJavascript)
       .then(tasksList.displayTasks)
@@ -76,6 +76,7 @@ const tasksList = {
 
       //gestion de la progress bar
       task.setCompletion(newTaskElement, taskObject.completion);
+      task.setId(newTaskElement, taskObject.id);
     }
   },
 
