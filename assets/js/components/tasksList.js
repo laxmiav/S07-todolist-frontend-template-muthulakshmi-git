@@ -31,6 +31,7 @@ const tasksList = {
     const taskListContainer = document.querySelector('.tasks');
     // ajout de la nouvelle tache AU DEBUT de la liste
     taskListContainer.prepend(newTask);
+    
   },
 
   // STEP épisode 4 ; chargement des tâches depuis l'api
@@ -63,7 +64,7 @@ const tasksList = {
     */
 
     for(const taskObject of tasks) {
-      const newTaskElement = task.createNewTask(taskObject.title, taskObject.category.name);
+      const newTaskElement = task.createNewTask(taskObject.title, taskObject.category.name,taskObject.category_id);
       tasksList.addTask(newTaskElement);
 
       // nous mettons le bon status à la tache
@@ -77,8 +78,48 @@ const tasksList = {
       //gestion de la progress bar
       task.setCompletion(newTaskElement, taskObject.completion);
       task.setId(newTaskElement, taskObject.id);
+      
     }
+   
   },
+
+  //STEP episode 6, ajoutez un tache coté api
+  saveNewTask: function (theNewTaskTitle, theNewTaskCategoryId) {
+
+
+
+
+    //option[value="3"]
+    // création des entetes pour la requête HTTP
+    const httpHeaders = new Headers();
+    httpHeaders.append('Content-Type', "application/json")
+
+    const ajaxOptions = {
+      method: 'POST', // nous allons faire un appel "patch" pour seulement mettre à jour le nom de la tâche
+      headers: httpHeaders,
+
+      // les data à envoyer à l'api
+      body: JSON.stringify({
+        title: theNewTaskTitle,
+        categoryId: theNewTaskCategoryId,
+        completion:0,
+        status:1
+      })
+    };
+
+    // construction de l'url
+    const url = task.apiRootURL + '/tasks';
+    // STEP episode 6
+    // IMPORTANT envoie de données vers une api
+    fetch(url, ajaxOptions)
+      .then(task.transformJSONToJavascript)
+      .then(function (taskInformations) {
+        console.log(taskInformations);
+      });
+
+  },
+
+
 
 
 }

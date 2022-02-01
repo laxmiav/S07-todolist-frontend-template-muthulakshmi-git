@@ -4,12 +4,12 @@ const task = {
 
   newTaskTemplateSelector: '#new-task-template',
 
-  init: function() {
+  init: function () {
     console.log('%c' + 'task.js loaded', 'color: #0bf; font-size: 1rem; background-color:#fff');
   },
 
   // cette méthode initialise les eventListeners pour une tâche
-  initializeEventListeners: function(taskElement) {
+  initializeEventListeners: function (taskElement) {
 
     // ciblage de l'élément contenant le titre de la tâche
     const taskTitle = taskElement.querySelector('.task__title-label');
@@ -33,7 +33,7 @@ const task = {
   },
 
   // STEP EPISODE 3 mettre une tache en status terminée
-  setStatusComplete: function(event) {
+  setStatusComplete: function (event) {
     const buttonElement = event.currentTarget;
     const taskElement = buttonElement.closest('.task');
     taskElement.classList.remove('task--todo');
@@ -46,7 +46,7 @@ const task = {
   },
 
 
-  setStatusEdition: function(event) {
+  setStatusEdition: function (event) {
     // récupération de l'élément sur lequel s'est produit le click
     const titleElement = event.currentTarget;
 
@@ -55,10 +55,9 @@ const task = {
     const taskElement = titleElement.closest('.task');
 
     // vérification est ce que la tache est en status todo. Si la tache n'est pas en status todo, nous ne faisons rien
-    if(!taskElement.classList.contains('task--todo')) {
+    if (!taskElement.classList.contains('task--todo')) {
       return false;
-    }
-    else {
+    } else {
       // nous retirons la classe CSS 'task--todo' de l'élément
       taskElement.classList.remove('task--todo');
       // nous ajoutons la classe CSS 'task--edit' sur l'élément
@@ -76,9 +75,9 @@ const task = {
   },
 
 
-  handleTitleKeyUp: function(event) {
+  handleTitleKeyUp: function (event) {
     // vérification si c'est la touche "entrée" qui a été saisie
-    if(event.key == 'Enter') {
+    if (event.key == 'Enter') {
       // nous mettons à jour le titre
       task.updateTitle(event);
 
@@ -88,7 +87,7 @@ const task = {
   },
 
 
-  setStatusTodo: function(event) {
+  setStatusTodo: function (event) {
     // récupération de l'input sur lequel s'est produit l'event "blur""
     const inputElement = event.currentTarget;
 
@@ -97,10 +96,9 @@ const task = {
     const taskElement = inputElement.closest('.task');
 
     // vérification est ce que la tache est en status edit. Si la tache n'est pas en status edit, nous ne faisons rien
-    if(!taskElement.classList.contains('task--edit')) {
+    if (!taskElement.classList.contains('task--edit')) {
       return false;
-    }
-    else {
+    } else {
       // nous retirons la classe CSS 'task--edit' de l'élément
       taskElement.classList.remove('task--edit');
       // nous ajoutons la classe CSS 'task--todo' sur l'élément
@@ -108,7 +106,7 @@ const task = {
     }
   },
 
-  updateTitle: function(event) {
+  updateTitle: function (event) {
     const inputElement = event.currentTarget;
     const taskElement = inputElement.closest('.task');
 
@@ -124,7 +122,7 @@ const task = {
   },
 
   // STEP episode 6, mise à du titre coté api
-  saveTitle: function(taskElement, newTitle) {
+  saveTitle: function (taskElement, newTitle) {
     const taskId = taskElement.dataset.id;
 
     // création des entetes pour la requête HTTP
@@ -147,14 +145,14 @@ const task = {
     // IMPORTANT envoie de données vers une api
     fetch(url, ajaxOptions)
       .then(task.transformJSONToJavascript)
-      .then(function(taskInformations) {
+      .then(function (taskInformations) {
         console.log(taskInformations);
       });
   },
 
 
   // STEP EPISODE 3 création d'une nouvelle tache
-  createNewTask: function(theNewTaskTitle, theNewTaskCategory) {
+  createNewTask: function (theNewTaskTitle, theNewTaskCategory, theNewTaskCategoryId) {
     // ciblage du template de création de tâche
     const template = document.querySelector(task.newTaskTemplateSelector);
     const newTaskElement = template.content.firstElementChild.cloneNode(true);
@@ -172,6 +170,8 @@ const task = {
     // remplacement de la catégorie de la tache dans le "data-category"
     newTaskElement.dataset.category = theNewTaskCategory;
 
+    
+    
     // Aux temps jadis nous faisions ainsi
     // newTaskElement.setAttribute('data-category', theNewTaskCategory);
 
@@ -181,25 +181,44 @@ const task = {
     categoryNameElement.textContent = theNewTaskCategory;
 
 
+
+   
+
     task.initializeEventListeners(newTaskElement);
 
     // nous retournons la nouvelle tache créée
     return newTaskElement;
   },
 
-  setStatus: function(taskElement, status) {
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  setStatus: function (taskElement, status) {
     // BONUS remplacer une css par une autre classe en js
     taskElement.classList.replace('task--todo', status);
   },
 
-  setCompletion: function(taskElement, completion) {
+  setCompletion: function (taskElement, completion) {
     // ciblage de la barre de progression
     const progressBar = taskElement.querySelector('.progress-bar__level');
     progressBar.style.width = completion + '%';
   },
 
   // appel à l'api pour sauvegarder le niveau de completion de la tâche
-  saveCompletion: function(taskElement, completion) {
+  saveCompletion: function (taskElement, completion) {
 
     // création des entetes pour la requête HTTP
     const httpHeaders = new Headers();
@@ -221,12 +240,12 @@ const task = {
     // IMPORTANT envoie de données vers une api
     fetch(url, ajaxOptions)
       .then(task.transformJSONToJavascript)
-      .then(function(taskInformations) {
+      .then(function (taskInformations) {
         console.log(taskInformations);
       });
   },
 
-  transformJSONToJavascript: function(eventAPIResponse) {
+  transformJSONToJavascript: function (eventAPIResponse) {
     return eventAPIResponse.json();
   },
 

@@ -39,8 +39,8 @@ const taskForm = {
     // récupération du nom de la catégory
     const categoryName =selectedOption.textContent;
 
-    const newTaskElement = task.createNewTask(newTaskTitle, categoryName);
+    const newTaskElement = task.createNewTask(newTaskTitle, categoryName, categoryId);
     tasksList.addTask(newTaskElement);
-
+    tasksList.saveNewTask(newTaskTitle, categoryId);
   }
 }

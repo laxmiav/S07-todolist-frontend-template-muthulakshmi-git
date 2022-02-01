@@ -3,7 +3,7 @@
 }
 
 .header {
-  background-color: #ededed;
+  background-color: #c7bdbd;
   padding: 1.2rem;
 }
 
@@ -31,11 +31,12 @@
 
 .task__content {
   padding: 0.5rem;
-  border: solid 1px #ededed;
+  border: solid 1px #8b8989;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  background:white;
 }
 
 .task__title {
@@ -63,7 +64,7 @@
 .progress-bar__level {
   height: 0.4rem;
   background-color: #3298dc;
-  transition: all 1000s;
+  transition: all 0.8s;
 }
 
 .task__button--desarchive,
@@ -241,5 +242,5 @@
 }
 
 body{
-  background-color:crimson;
+  background-color:rgb(233, 220, 223);
 }
